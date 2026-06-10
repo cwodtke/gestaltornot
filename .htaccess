@@ -1,0 +1,11 @@
+# Protect config file from direct access
+<Files "config.php">
+    Order Allow,Deny
+    Deny from all
+</Files>
+
+# Enable CORS for same-origin requests only
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "DENY"
+</IfModule>

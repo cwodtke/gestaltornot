@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Bauhaus-style favicon: circle, square, triangle -->
+  <rect width="32" height="32" fill="#ffffff"/>
+  <circle cx="8" cy="10" r="5" fill="#000000"/>
+  <rect x="17" y="5" width="10" height="10" fill="#000000"/>
+  <polygon points="8,27 16,15 0,15" fill="#000000"/>
+</svg>

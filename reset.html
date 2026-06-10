@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset Password — Gestalt Or Not</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <span class="shape circle"></span>
+            <span class="shape square"></span>
+            <span class="shape triangle"></span>
+        </div>
+        <a href="/" style="text-decoration: none; color: inherit;"><h1>Gestalt Or Not</h1></a>
+        <p class="tagline">Reset your password.</p>
+    </header>
+
+    <main>
+        <section style="max-width: 400px;">
+            <div class="auth-form" id="resetForm">
+                <h2>New Password</h2>
+                <div id="resetError" class="auth-error hidden"></div>
+                <div id="resetSuccess" class="auth-success hidden"></div>
+                <input type="password" id="newPassword" placeholder="New password (8+ characters)" autocomplete="new-password">
+                <input type="password" id="confirmPassword" placeholder="Confirm password" autocomplete="new-password">
+                <button class="btn" id="resetSubmit">Reset Password</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Built to teach design principles.</p>
+        <p class="subtle">Based on Gestalt psychology & visual design heuristics.</p>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const params = new URLSearchParams(window.location.search);
+        const token = params.get('token');
+        const errorEl = document.getElementById('resetError');
+        const successEl = document.getElementById('resetSuccess');
+
+        if (!token) {
+            errorEl.textContent = 'Missing reset token. Please use the link from your email.';
+            errorEl.classList.remove('hidden');
+            document.getElementById('resetSubmit').disabled = true;
+            return;
+        }
+
+        document.getElementById('resetSubmit').addEventListener('click', async () => {
+            const password = document.getElementById('newPassword').value;
+            const confirm = document.getElementById('confirmPassword').value;
+            errorEl.classList.add('hidden');
+            successEl.classList.add('hidden');
+
+            if (password.length < 8) {
+                errorEl.textContent = 'Password must be at least 8 characters.';
+                errorEl.classList.remove('hidden');
+                return;
+            }
+
+            if (password !== confirm) {
+                errorEl.textContent = 'Passwords do not match.';
+                errorEl.classList.remove('hidden');
+                return;
+            }
+
+            const res = await fetch('auth.php?action=reset', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ token, password })
+            });
+            const data = await res.json();
+
+            if (data.error) {
+                errorEl.textContent = data.error;
+                errorEl.classList.remove('hidden');
+                return;
+            }
+
+            document.getElementById('resetForm').innerHTML = `
+                <h2>Password Reset</h2>
+                <p class="auth-success">Your password has been updated.</p>
+                <a href="/" class="btn" style="text-align: center; text-decoration: none; display: block;">Back to Gestalt Or Not</a>
+            `;
+        });
+
+        document.getElementById('newPassword').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') document.getElementById('confirmPassword').focus();
+        });
+        document.getElementById('confirmPassword').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') document.getElementById('resetSubmit').click();
+        });
+    });
+    </script>
+</body>
+</html>

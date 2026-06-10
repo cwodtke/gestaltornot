@@ -1,0 +1,20 @@
+# Environment & Configuration
+config.php
+.env
+.env.local
+
+# Database
+data/
+data/**
+
+# IDE & Tools
+.claude/
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Sensitive
+*.log
