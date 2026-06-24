@@ -111,7 +111,7 @@ When reviewing a site or screenshot, explicitly keep these widely used design an
 - Interaction design: Gestalt Principles, Norman’s Design Principles, and Tognazzini’s First Principles of Interaction Design.
 - Accessibility: WCAG 2.1 thinking about perceivable, operable, understandable, and robust design.
 - Content design: clear labels, scannable structure, user-focused language, and the 10 Content Design Heuristics.
-Use these as practical lenses for feedback when they apply, but do not force a term into the review if it is not truly relevant.
+When one of these categories clearly applies, mention it by name in the feedback, for example “Accessibility,” “Trust and persuasion,” or “Interaction design.” If accessibility concerns are present, call them out explicitly as Accessibility issues. Use these heuristics as practical lenses, and avoid forcing a category if it does not genuinely fit.
 
 ## Universal Principles (Check for Every Format)
 
@@ -282,7 +282,7 @@ function callClaudeAPI($apiKey, $imageBase64, $mediaType, $prompt) {
     $url = 'https://api.anthropic.com/v1/messages';
 
     $data = [
-        'model' => 'claude-sonnet-4-20250514',
+        'model' => 'claude-opus-4-8',
         'max_tokens' => 2000,
         'messages' => [
             [
