@@ -60,12 +60,15 @@ AI-powered visual design feedback tool. Analyzes any flat visual — UI screens,
 - `view.php` prefers file path, falls back to inline base64 `screenshot` column for legacy reviews
 - OG meta tags use public URL to saved file for social sharing
 
-## Design
-- Bauhaus modernist aesthetic: black borders, no rounded corners, geometric shapes
-- CSS variables: `--black`, `--white`, `--red`, `--gray-light`, `--gray-mid`, `--gray-dark`, `--green`, `--yellow`
-- Font: DM Sans (Google Fonts)
-- Site name displays as "Gestalt Or Not" (with spaces)
-- Non-homepage pages link the h1 back to `/`
+## Design — "Modular Grid" (Bauhaus / Swiss-modernist)
+Redesigned from the old burgundy/teal "Constructivist Poster" to a Müller-Brockmann modular grid: off-white paper ground, thin black rules, primary Bauhaus accents. No rounded corners except circles; no shadows except the modal.
+- CSS variables: `--ink` (#111 text & rules), `--paper` (#FBFBF9), `--red` (#D8362A), `--blue` (#1D52B5), `--yellow` (#F2B600), `--yellow-text` (#C99500, darkened for legibility on paper), `--drag` (#F0EEE6 drag-over fill), `--hair` (rgba(17,17,17,.12) faint row rule), `--rule-soft`.
+- Fonts: **Archivo Black** (`--display` — H1, numerals) and **Space Grotesk** (`--font` — body/UI/labels). Label convention: 11px, uppercase, letter-spacing .14em, opacity .55.
+- Borders: 1px solid ink hairlines; 3px solid ink structural separators (`.sep-top`/`.sep-bottom`).
+- Brand mark: `.mark` = red circle / blue square / yellow triangle (`.mark-sm` for the 11px About-header variant).
+- Homepage (`index.html`) is one bordered grid (`.board.board-hero`, fills viewport): meta row → hero band → work region (uploader cell + about/critique cell) → footer band. Results, rate-limit, and review history flow below in `main.flow` (max 1100px, centered). Analyze auto-scrolls to results since the hero is full-viewport.
+- Secondary pages (`glossary.php`, `view.php`, `reset.html`) use a compact `.site-bar` grid header + `main.flow` + `.site-footer`. Glossary keeps its page-specific styles inline.
+- Site name displays as "Gestalt Or Not" (with spaces); secondary-page wordmark links back to `/`.
 
 ## Key Decisions
 

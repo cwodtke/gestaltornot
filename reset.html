@@ -8,22 +8,22 @@
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <span class="shape circle"></span>
-            <span class="shape square"></span>
-            <span class="shape triangle"></span>
-        </div>
-        <a href="/" style="text-decoration: none; color: inherit;"><h1>Gestalt Or Not</h1></a>
-        <p class="tagline">Reset your password.</p>
-    </header>
+    <div class="site-bar">
+        <span class="mark" aria-hidden="true">
+            <span class="m-circle"></span>
+            <span class="m-square"></span>
+            <span class="m-triangle"></span>
+        </span>
+        <a href="/" class="wordmark">Gestalt <span class="or">Or</span> Not</a>
+        <span class="page-label">Reset Password</span>
+    </div>
 
-    <main>
-        <section style="max-width: 400px;">
-            <div class="auth-form" id="resetForm">
+    <main class="flow">
+        <section style="max-width: 420px;">
+            <div class="auth-form reset-card" id="resetForm">
                 <h2>New Password</h2>
                 <div id="resetError" class="auth-error hidden"></div>
                 <div id="resetSuccess" class="auth-success hidden"></div>
@@ -34,9 +34,9 @@
         </section>
     </main>
 
-    <footer>
+    <footer class="site-footer">
         <p>Built to teach design principles.</p>
-        <p class="subtle">Based on Gestalt psychology & visual design heuristics.</p>
+        <p>Based on Gestalt psychology &amp; visual design heuristics.</p>
     </footer>
 
     <script>

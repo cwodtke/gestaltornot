@@ -90,7 +90,7 @@ $formattedFeedback = formatFeedbackPHP($review['feedback']);
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Open Graph / Social Sharing -->
     <meta property="og:title" content="Design Review — Gestalt Or Not">
@@ -104,38 +104,28 @@ $formattedFeedback = formatFeedbackPHP($review['feedback']);
     <?php endif; ?>
 
     <style>
-        .shared-review {
-            margin-top: 1rem;
-        }
+        .shared-review { margin-top: 0; }
         .review-meta {
-            font-size: 0.875rem;
-            color: var(--gray-mid);
+            font-size: 11px;
+            letter-spacing: .04em;
+            text-transform: uppercase;
+            opacity: .55;
             margin-bottom: 2rem;
-        }
-        .back-link {
-            display: inline-block;
-            margin-top: 2rem;
-            color: var(--black);
-            text-decoration: none;
-            font-weight: 700;
-        }
-        .back-link:hover {
-            text-decoration: underline;
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <span class="shape circle"></span>
-            <span class="shape square"></span>
-            <span class="shape triangle"></span>
-        </div>
-        <a href="/" style="text-decoration: none; color: inherit;"><h1>Gestalt Or Not</h1></a>
-        <p class="tagline">Design feedback powered by visual principles.</p>
-    </header>
+    <div class="site-bar">
+        <span class="mark" aria-hidden="true">
+            <span class="m-circle"></span>
+            <span class="m-square"></span>
+            <span class="m-triangle"></span>
+        </span>
+        <a href="/" class="wordmark">Gestalt <span class="or">Or</span> Not</a>
+        <span class="page-label">Design Review</span>
+    </div>
 
-    <main>
+    <main class="flow">
         <section class="shared-review">
             <p class="review-meta">
                 Review created <?= htmlspecialchars($created) ?>
@@ -161,9 +151,9 @@ $formattedFeedback = formatFeedbackPHP($review['feedback']);
         </section>
     </main>
 
-    <footer>
+    <footer class="site-footer">
         <p>Built to teach design principles. <a href="/glossary.php" class="support-link">Design Glossary</a></p>
-        <p class="subtle">Based on Gestalt psychology & visual design heuristics.</p>
+        <p>Based on Gestalt psychology &amp; visual design heuristics.</p>
     </footer>
 </body>
 </html>

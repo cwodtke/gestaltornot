@@ -515,6 +515,7 @@ analyzeBtn.addEventListener('click', async () => {
     // Show loading
     results.classList.remove('hidden');
     loading.classList.remove('hidden');
+    results.scrollIntoView({ behavior: 'smooth', block: 'start' });
     feedback.innerHTML = '';
     analyzeBtn.disabled = true;
     analyzeBtn.textContent = inputMode === 'url' ? 'Capturing screenshot...' : 'Analyzing...';

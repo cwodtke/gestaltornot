@@ -19,14 +19,15 @@ $terms = require __DIR__ . '/glossary-data.php';
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
         /* Glossary-specific styles */
         .glossary-intro {
             margin-bottom: 2rem;
-            color: var(--gray-dark);
+            opacity: .75;
             line-height: 1.6;
+            max-width: 70ch;
         }
 
         .glossary-toc {
@@ -35,15 +36,15 @@ $terms = require __DIR__ . '/glossary-data.php';
             gap: 0.5rem;
             margin-bottom: 3rem;
             padding-bottom: 2rem;
-            border-bottom: 2px solid var(--black);
+            border-bottom: 3px solid var(--ink);
         }
 
         .glossary-chip {
             display: inline-block;
-            padding: 0.375rem 0.75rem;
-            border: 2px solid var(--black);
+            padding: 0.4rem 0.8rem;
+            border: 1px solid var(--ink);
             text-decoration: none;
-            color: var(--black);
+            color: var(--ink);
             font-size: 0.8125rem;
             font-weight: 700;
             font-family: var(--font);
@@ -51,14 +52,14 @@ $terms = require __DIR__ . '/glossary-data.php';
         }
 
         .glossary-chip:hover {
-            background: var(--black);
-            color: var(--white);
+            background: var(--ink);
+            color: var(--paper);
         }
 
         .glossary-term {
-            margin-bottom: 3rem;
+            margin-bottom: 2.5rem;
             padding-bottom: 2rem;
-            border-bottom: 1px solid var(--gray-light);
+            border-bottom: 1px solid var(--hair);
             scroll-margin-top: 1rem;
         }
 
@@ -66,38 +67,34 @@ $terms = require __DIR__ . '/glossary-data.php';
             border-bottom: none;
         }
 
-        .glossary-term-header {
-            display: flex;
-            align-items: flex-start;
-            gap: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
         .glossary-term-name {
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin: 0;
+            font-family: var(--display);
+            font-size: 1.4rem;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: -0.01em;
+            margin: 0 0 0.75rem;
         }
 
         .glossary-term-name a {
-            color: var(--black);
+            color: var(--ink);
             text-decoration: none;
         }
 
         .glossary-term-name a:hover {
-            text-decoration: underline;
+            color: var(--blue);
         }
 
         .glossary-term-def {
             line-height: 1.7;
-            color: var(--gray-dark);
+            opacity: .8;
             max-width: 65ch;
         }
 
         .glossary-term-example {
             margin-top: 1rem;
-            background: var(--gray-light);
-            border: 1px solid #e0e0e0;
+            background: var(--paper);
+            border: 1px solid var(--ink);
             padding: 1rem;
             display: inline-block;
         }
@@ -109,15 +106,17 @@ $terms = require __DIR__ . '/glossary-data.php';
         }
 
         .glossary-section-label {
-            font-size: 0.75rem;
-            font-weight: 700;
+            font-family: var(--display);
+            font-size: 1.3rem;
+            font-weight: 400;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--gray-mid);
+            letter-spacing: -0.01em;
+            color: var(--ink);
             margin-bottom: 1.5rem;
-            margin-top: 1rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid var(--black);
+            margin-top: 2.5rem;
+            padding: 0.4rem 0 0.5rem 1rem;
+            border-left: 10px solid var(--red);
+            border-bottom: 3px solid var(--ink);
         }
 
         .references-section {
@@ -125,14 +124,17 @@ $terms = require __DIR__ . '/glossary-data.php';
         }
 
         .references-section h2 {
-            font-size: 1.25rem;
+            font-family: var(--display);
+            font-size: 1.4rem;
+            font-weight: 400;
+            text-transform: uppercase;
             margin-bottom: 0.75rem;
         }
 
         .reference-list {
             margin: 0;
             padding-left: 1.25rem;
-            color: var(--gray-dark);
+            opacity: .85;
             line-height: 1.7;
         }
 
@@ -141,25 +143,14 @@ $terms = require __DIR__ . '/glossary-data.php';
         }
 
         .reference-list a {
-            color: var(--black);
+            color: var(--blue);
             font-weight: 700;
-            text-decoration: none;
+            text-decoration: underline;
+            text-decoration-thickness: 2px;
         }
 
         .reference-list a:hover {
-            text-decoration: underline;
-        }
-
-        .back-link {
-            display: inline-block;
-            margin-top: 2rem;
-            color: var(--black);
-            text-decoration: none;
-            font-weight: 700;
-        }
-
-        .back-link:hover {
-            text-decoration: underline;
+            color: var(--ink);
         }
 
         @media (max-width: 600px) {
@@ -175,17 +166,17 @@ $terms = require __DIR__ . '/glossary-data.php';
     </style>
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <span class="shape circle"></span>
-            <span class="shape square"></span>
-            <span class="shape triangle"></span>
-        </div>
-        <a href="/" style="text-decoration: none; color: inherit;"><h1>Gestalt Or Not</h1></a>
-        <p class="tagline">Design Glossary</p>
-    </header>
+    <div class="site-bar">
+        <span class="mark" aria-hidden="true">
+            <span class="m-circle"></span>
+            <span class="m-square"></span>
+            <span class="m-triangle"></span>
+        </span>
+        <a href="/" class="wordmark">Gestalt <span class="or">Or</span> Not</a>
+        <span class="page-label">Design Glossary</span>
+    </div>
 
-    <main>
+    <main class="flow">
         <p class="glossary-intro">
             These are the design principles and concepts referenced in Gestalt Or Not feedback.
             Each term links back here when it appears in a review, so you can learn as you go.
@@ -279,9 +270,9 @@ $terms = require __DIR__ . '/glossary-data.php';
         <a href="/" class="back-link">&larr; Analyze your own design</a>
     </main>
 
-    <footer>
+    <footer class="site-footer">
         <p>Built to teach design principles.</p>
-        <p class="subtle">Based on Gestalt psychology & visual design heuristics. <a href="https://www.paypal.com/donate/?hosted_button_id=QRDU77Z7K56XG" target="_blank" rel="noopener" class="support-link">Support this project</a></p>
+        <p>Based on Gestalt psychology &amp; visual design heuristics. <a href="https://www.paypal.com/donate/?hosted_button_id=QRDU77Z7K56XG" target="_blank" rel="noopener" class="support-link">Support this project</a></p>
     </footer>
 </body>
 </html>
