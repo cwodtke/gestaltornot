@@ -282,7 +282,7 @@ function callClaudeAPI($apiKey, $imageBase64, $mediaType, $prompt) {
     $url = 'https://api.anthropic.com/v1/messages';
 
     $data = [
-        'model' => 'claude-opus-4-8',
+        'model' => 'claude-sonnet-4-6',
         'max_tokens' => 2000,
         'messages' => [
             [
